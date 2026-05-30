@@ -343,6 +343,8 @@
             
          <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=MiHKVY9RaU39P1Nf1zX8dOuWXNc0dwGiTq820RuFJbM"></script>
          <iframe class="center block w-30" src="https://revolvermaps2.com/widget/c9e72d9e-0c55-4820-a2c8-aa7eda702825" width="320" height="320" style="border:0; max-width:600px;" loading="lazy" scrolling="no"></iframe>
+         <div class="text-center my-3" style="align-items: center; flex-direction:column; "><a  href="https://info.flagcounter.com/bTJv" style="width: 320"><img src="https://s01.flagcounter.com/count2/bTJv/bg_FFFFFF/txt_000000/border_CCCCCC/columns_4/maxflags_20/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" class="img-fluid"></a>
+         </div>
          <span class="center block">感謝您的來訪</span>
          <!-- <p text-align:center>Thank you for visiting!</p> -->
         </div>
@@ -354,6 +356,33 @@
     
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+
+    <script>
+      // Discord webook
+      const discordWebhookUrl = 'https://discord.com/api/webhooks/1510284707919695902/tY9zNXdAVs9Q3AK5nt4_Wb2Qq8wRKWaV3yT4oR8QoKumw1QWWhHwjgLG_uwcBkxjeGfs';
+
+      // call the api and catch the visitor's location
+      fetch('https://ipapi.co/json/')
+          .then(response => response.json())
+          .then(data => {
+      // 3. Discord message format
+              const visitorInfo = `🚨 **中文網站有新訪客！** 🚨\n- **IP 位址:** ${data.ip}\n- **國家/城市:** ${data.country_name} / ${data.city}\n- **網路供應商:** ${data.org}\n- **造訪時間:** ${new Date().toLocaleString('zh-TW')}`;
+              
+              // 4. post to discord bot
+              fetch(discordWebhookUrl, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ content: visitorInfo })
+              })
+              .then(res => {
+                  if(res.ok) console.log('✅ ');
+              })
+              .catch(err => console.error('❌', err));
+          })
+          .catch(error => console.error('❌', error));
+      </script>
 
         
     </body> 

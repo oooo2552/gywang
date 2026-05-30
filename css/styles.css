@@ -10984,3 +10984,41 @@ section.resume-section .resume-section-content {
   background: #9ACBD0;
   color: #fff;
 }
+
+
+.visitor-widgets-container {
+  /* 1. 整個大箱子在網頁正中間 */
+  margin: 0 auto;         
+  /* 2. 統一把寬度鎖死在你想要的尺寸 (以 RevolverMaps 的 320px 為基準) */
+  width: 320px;           
+  max-width: 100%;
+  /* 3. 使用 Flexbox 讓裡面的東西直向排列，並且置中對齊 */
+  display: flex;          
+  flex-direction: column; 
+  align-items: center;    
+  /* 4. 設定小工具之間的上下距離 */
+  gap: 25px;              
+  padding: 20px 0;
+}
+
+/* 強制要求箱子裡面的 iframe 圖片都要服從 320px 寬度 */
+.visitor-widgets-container iframe,
+.visitor-widgets-container img {
+  width: 100% !important;
+  height: auto;
+  display: block;
+}
+
+/* 特別維持 RevolverMaps 的高度避免變形 */
+.visitor-widgets-container iframe {
+  height: 320px !important;
+}
+
+/* 底部文字樣式 */
+.visitor-widgets-container .greeting-text {
+  text-align: center;
+  font-family: sans-serif;
+  color: #555;
+  font-weight: bold;
+}
+

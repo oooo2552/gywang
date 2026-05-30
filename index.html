@@ -208,7 +208,7 @@
                             <p><b>10/Feb/2026</b>: Delivered a talk at the Social Robotics Workshop of the Society for Social Robots: ‘What Is a Social Robot? From Physical AI to Social AI,’ held at the NTU Sports Center alongside the VEX 2025–2026 Robotics Competition.</p>
                             <p><b>25/Jan/2026</b>: Participated in Arizona State University’s 🌵 two‑week ‘EMI Faculty Institute’ teacher training program, supported by the Fulbright Taiwan (Academic Year 2025–2026) and the Fu Jen Catholic University College of Management.</p>
                             <p><b>23/Dec/2025</b>: Invited by the Office of International Affairs at National Formosa University, I delivered a special lecture titled ‘Going to Study in Japan Tomorrow — Finding a Path Called Courage on a Snowy Night,’ sharing my experiences studying in Japan. </p>                      
-                            <p><b>03/Nov/2025</b>: Invited by the Department of Information Management at National Sun Yat-sen University to give a keynote speech titled "AI x Education: Interdisciplinary Exploration from Interactive Robots to Large Language Models." <a href="https://web.mis.nsysu.edu.tw/p/406-1232-365354,r11.php?Lang=zh-tw">Link</a></p>
+                            <p><b>03/Nov/2025</b>: Invited by the Department of Information Management at zNational Sun Yat-sen University to give a keynote speech titled "AI x Education: Interdisciplinary Exploration from Interactive Robots to Large Language Models." <a href="https://web.mis.nsysu.edu.tw/p/406-1232-365354,r11.php?Lang=zh-tw">Link</a></p>
                             <p><b>30/Sep/2025</b>: Invited by the Graduate Institute of Curriculum and Instructional Technology at National Taipei University of Education to give a keynote speech titled "Robot Interaction and AI Applications in the Linguistics Olympiad."</p>
                             <p><b>22/Sep/2025</b>: Invited by the NCKU Museum to speak in the "Women in Tech Talent" lecture series, sharing insights on career planning and the journey of academic research and reflection.</p>
                             <p><b>05/Sep/2025</b>: Invited by Changhua Show Chwan Hospital to give a talk titled: "Interdisciplinary Experience Sharing: The Transformation from a Humanities Student to an AI PhD."</p>
@@ -327,10 +327,12 @@
          <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=MiHKVY9RaU39P1Nf1zX8dOuWXNc0dwGiTq820RuFJbM"></script>
          
          <iframe class="center block w-30" src="https://revolvermaps2.com/widget/c9e72d9e-0c55-4820-a2c8-aa7eda702825" width="320" height="320" style="border:0; max-width:600px;" loading="lazy" scrolling="no"></iframe>
-        
+         <div class="text-center my-3" style="align-items: center; flex-direction:column; "><a  href="https://info.flagcounter.com/bTJv" style="width: 320"><img src="https://s01.flagcounter.com/count2/bTJv/bg_FFFFFF/txt_000000/border_CCCCCC/columns_4/maxflags_20/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" class="img-fluid"></a>
+         </div>
          <span class="center block">Thank you for visiting!</span>
          <!-- <p text-align:center>Thank you for visiting!</p> -->
         </div>
+
     
     
 
@@ -341,6 +343,34 @@
     
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+
+
+    <script>
+      // Discord webook
+      const discordWebhookUrl = 'https://discord.com/api/webhooks/1510284707919695902/tY9zNXdAVs9Q3AK5nt4_Wb2Qq8wRKWaV3yT4oR8QoKumw1QWWhHwjgLG_uwcBkxjeGfs';
+
+      // call the api and catch the visitor's location
+      fetch('https://ipapi.co/json/')
+          .then(response => response.json())
+          .then(data => {
+      // 3. Discord message format
+              const visitorInfo = `🚨 **英文網站有新訪客！** 🚨\n- **IP 位址:** ${data.ip}\n- **國家/城市:** ${data.country_name} / ${data.city}\n- **網路供應商:** ${data.org}\n- **造訪時間:** ${new Date().toLocaleString('zh-TW')}`;
+              
+              // 4. post to discord bot
+              fetch(discordWebhookUrl, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ content: visitorInfo })
+              })
+              .then(res => {
+                  if(res.ok) console.log('✅ ');
+              })
+              .catch(err => console.error('❌', err));
+          })
+          .catch(error => console.error('❌', error));
+      </script>
 
         
     </body> 
@@ -362,11 +392,14 @@
         <p class="text-center"> Contact: <a href="mailto: 162944@mail.fju.edu.tw"> 162944@mail.fju.edu.tw</a></p>
       </sub>
       
+
     </footer>
 
 
 
 </html>
+
+
 
 
 
