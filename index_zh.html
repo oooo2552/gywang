@@ -214,6 +214,9 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0"></h3>
                             <div class="subheading mb-3"></div>
+                            <p><b>2026年7月29-31日</b>: 赴克羅埃西亞札格勒布(Zagreb, Croatia)參加AIET2026研討會。榮獲最佳口頭報告獎。</p>
+                            <p><b>2026年7月10日</b>: 感謝聚合國際(HOPAX)股份有限公司邀請，演講主題「AI Agent 在化學研發的實踐：從智能助手到實驗室數位轉型 」</p>
+                            <p><b>2026年7月7日</b>: 南港高中微課程授課(3小時電腦視覺工作坊)：「視覺感官初步：機器學習在影像辨識的實作」</p>
                             <p><b>2026年5月20日</b>: 於ICEET2026演講「AI代理人之教育應用於實踐」，地點位於國立臺北教育大學。</p>
                             <p><b>2026年5月9日</b>: 於新北幼教高峰會演講「數位媒體的新趨勢：科技新知、AI應用，開啟親、師、生人工智慧學習的新視界」(地點位於輔仁大學)</p>
                             <p><b>2026年5月5日</b>: 於臺灣社會機器人學學會主辦之「智匯社會：生成是AI與機器人的共生實踐論壇」演講「大型語言模型與教育系統之整合」，地點位於國立臺灣大學機械系演講廳</p>
@@ -229,14 +232,7 @@
                             <p><b>2025年7月29日</b>: 受台北市進出口商業同業公會邀請，講授「智能客服在企業的應用與發展」課程，內容包含當今大語言模型以及AI客服趨勢。 <a href="https://doed.gov.taipei/News_Content.aspx?n=F28B775DFA6D1A44&sms=72544237BBE4C5F6&s=2FF684937B39C025" target="_blank">政府新聞稿</a> <a href="https://dbc.gov.taipei/Channel/Detail?channelId=14" target="_blank">課程資訊</a></p>
                             <p><b>2025年7月27日</b>: 臺灣社會機器人學學會成立大會(第1屆第1次會員大會)，受命擔任學會秘書長一職。<a href="https://socrobot.ntu.edu.tw/" target="_blank">社會機器人跨域創新學術研究交流平臺</a></p> 
                             <p><b>2025年5月25日</b>: 🥉獲2025年雙北世壯運跆拳道個人品勢U40-休閒組-銅牌</p>
-                            <p><b>2025年3月8日</b>: 文章被接受了! 刊登在《Computers and Education: Artificial Intelligence》。<a href="https://doi.org/10.1016/j.caeai.2025.100387" target="_blank">連結</a></p>
-                            <p><b>2025年2月1日</b>: 開始在輔仁大學資訊管理學系任教。</p>     
-                            <p><b>2024年11月2日</b>: 榮獲第十四屆<a href="https://culture.tainan.gov.tw/form/Details?Parser=28,6,110,45,,,1202" target="_blank">臺南文學獎</a>（113年度）小品文組(致臺南的情書) 優選，參加頒獎典禮。得獎作品專輯：<a href="https://www.books.com.tw/products/E050239572?srsltid=AfmBOorTfGuThGMG0SMDLpLtxawrtV9uusivAc4T1ETQGCvtlvA0PdkH" target="blank">電子書</a>免費領用。</p>     
-                            <p><b>2024年6月30日</b>: 感謝《不務正業的超能力》主持人<b>不務正業の威廉</b>邀請，於HPX高雄讀書會聚會分享日本留學經驗。</p>     
-                            <p><b>2024年4月14日</b>: 感謝北市圖邀請，於臺北市立圖書館總館分享日本留學經驗。活動訊息：<a href="https://studyabroad-tpml.gov.taipei/News_Content.aspx?n=4F19B7E48EDEDC6C&sms=D397F8A09474F62E&s=8C7BC7F0657CAA78" target="_blank">連結</a></p>     
-                            <p><b>2024年3月2日</b>: 在國立臺灣大學與東北大學電氣通信研究所聯合論壇(2024 第七屆 NTU x Tohoku Symposium on AI and Human Studies)演講「Estimation of mental states in the context of e-learning by using machine learning techniques" <a href="https://ai.robo.ntu.edu.tw/news_view.php?id=123" target="_blank">活動資訊連結</a></p>   
-                            <p><b>2024年1月20日</b>: 感謝日本台灣生技協會邀請，於臺北分享日本留學經驗。報名訊息：<a href="https://www.facebook.com/photo/?fbid=748348683998159&set=a.457435339756163" target="_blank">連結</a></p>   
-                            
+
                             <p><a href="announcement.html">More...</a></p>
                             
                                 
@@ -357,32 +353,57 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
 
-    <script>
-      // Discord webook
-      const discordWebhookUrl = 'https://discord.com/api/webhooks/1510284707919695902/tY9zNXdAVs9Q3AK5nt4_Wb2Qq8wRKWaV3yT4oR8QoKumw1QWWhHwjgLG_uwcBkxjeGfs';
+<script>
+  // 1. 爬蟲與自動化程式判斷機制
+  const userAgent = navigator.userAgent || '';
+  const isBot = /bot|googlebot|crawler|spider|robot|crawling|headless|slurp|bingbot|yandex|baidu/i.test(userAgent);
+  const isHeadless = navigator.webdriver || false; // 偵測 Selenium / Puppeteer 等自動化控制框架
 
-      // call the api and catch the visitor's location
+  // 只有當使用者是「真人」時才執行追蹤，直接跳過機器人
+  if (!isBot && !isHeadless) {
+
+      // Discord webhook
+      const discordWebhookUrl = 'https://discord.com/api/webhooks/1544243279481012224/IuSFWSams-GFyOrnLJUAGFe9v4AxTAOfwtoz3mqkdIDAU442b05k3D93faFSVMyVhGdL';
+
+      // 封裝發送到 Discord 的函式
+      const sendToDiscord = (messageContent) => {
+          fetch(discordWebhookUrl, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ content: messageContent })
+          })
+          .then(res => {
+              if(res.ok) console.log('✅ 發送成功');
+          })
+          .catch(err => console.error('❌ 發送失敗:', err));
+      };
+
+      // 呼叫 API 抓取訪客位置
       fetch('https://ipapi.co/json/')
-          .then(response => response.json())
+          .then(response => {
+              if (!response.ok) throw new Error('IP API 額度已滿或異常');
+              return response.json();
+          })
           .then(data => {
-      // 3. Discord message format
+              // Discord 訊息內容 (成功取得 IP)
               const visitorInfo = `🚨 **中文網站有新訪客！** 🚨\n- **IP 位址:** ${data.ip}\n- **國家/城市:** ${data.country_name} / ${data.city}\n- **網路供應商:** ${data.org}\n- **造訪時間:** ${new Date().toLocaleString('zh-TW')}`;
               
-              // 4. post to discord bot
-              fetch(discordWebhookUrl, {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({ content: visitorInfo })
-              })
-              .then(res => {
-                  if(res.ok) console.log('✅ ');
-              })
-              .catch(err => console.error('❌', err));
+              sendToDiscord(visitorInfo);
           })
-          .catch(error => console.error('❌', error));
-      </script>
+          .catch(error => {
+              console.warn('⚠️ 無法取得詳細 IP 資訊，啟動備援發送:', error);
+              
+              // 備援方案：即使 IP API 壞掉或額度滿了，依然通知 Discord 有新訪客造訪
+              const fallbackInfo = `🚨 **中文網站有新訪客！** 🚨\n- **備註:** 無法讀取詳細 IP (API 達到上限)\n- **造訪時間:** ${new Date().toLocaleString('zh-TW')}`;
+              
+              sendToDiscord(fallbackInfo);
+          });
+  } else {
+      console.log('🤖 偵測到機器人/爬蟲造訪，已自動攔截 Webhook 通知。');
+  }
+</script>
 
         
     </body> 

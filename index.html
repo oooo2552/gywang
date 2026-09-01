@@ -201,6 +201,10 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0"></h3>
                             <div class="subheading mb-3"></div>  
+                                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <p><b>29-31/Jul/2026</b>: Attended the AIET2026 conference in Zagreb, Croatia. Won the Best Oral Presentation Award.</p>
+                            <p><b>10/Jul/2026</b>: Invited by Taiwan HOPAX Chems. Mfg. Co., Ltd. to deliver a keynote on "Practical Application of AI Agents in Chemical R&D: From Intelligent Assistants to Laboratory Digital Transformation."</p>
+                            <p><b>07/Jul/2026</b>: Taught a mini-course (3-hour Computer Vision Workshop) for Nangang High School: "Introduction to Visual Senses: Hands-on Machine Learning for Image Recognition."</p>
                             <p><b>20/May/2026</b>: Delivered a presentation titled "Educational Applications and Practices of AI Agents" at ICEET 2026, held at National Taipei University of Education.</p>
                             <p><b>09/May/2026</b>: Deliver  ed a presentation titled "New Trends in Digital Media: Technological Innovations and AI Applications, Opening a New Horizon of AI Learning for Parents, Teachers, and Students" at the New Taipei Early Childhood Education Summit (Location: Fu Jen Catholic University).</p>
                             <p><b>05/May/2026</b>: Delivered a presentation titled "Integration of Large Language Models and Educational Systems" at the "Smart Society: Symbiotic Practice Forum of Generative AI and Robotics" hosted by the Social Robotics Society of Taiwan. The event was held at the Lecture Hall of the Department of Mechanical Engineering, National Taiwan University.</p>
@@ -345,32 +349,57 @@
     <script src="js/scripts.js"></script>
 
 
-    <script>
-      // Discord webook
-      const discordWebhookUrl = 'https://discord.com/api/webhooks/1510284707919695902/tY9zNXdAVs9Q3AK5nt4_Wb2Qq8wRKWaV3yT4oR8QoKumw1QWWhHwjgLG_uwcBkxjeGfs';
+<script>
+  // 1. 爬蟲與自動化程式判斷機制
+  const userAgent = navigator.userAgent || '';
+  const isBot = /bot|googlebot|crawler|spider|robot|crawling|headless|slurp|bingbot|yandex|baidu/i.test(userAgent);
+  const isHeadless = navigator.webdriver || false; // 偵測 Selenium / Puppeteer 等自動化控制框架
 
-      // call the api and catch the visitor's location
+  // 只有當使用者是「真人」時才執行追蹤，直接跳過機器人
+  if (!isBot && !isHeadless) {
+
+      // Discord webhook
+      const discordWebhookUrl = 'https://discord.com/api/webhooks/1544243279481012224/IuSFWSams-GFyOrnLJUAGFe9v4AxTAOfwtoz3mqkdIDAU442b05k3D93faFSVMyVhGdL';
+
+      // 封裝發送到 Discord 的函式
+      const sendToDiscord = (messageContent) => {
+          fetch(discordWebhookUrl, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ content: messageContent })
+          })
+          .then(res => {
+              if(res.ok) console.log('✅ 發送成功');
+          })
+          .catch(err => console.error('❌ 發送失敗:', err));
+      };
+
+      // 呼叫 API 抓取訪客位置
       fetch('https://ipapi.co/json/')
-          .then(response => response.json())
+          .then(response => {
+              if (!response.ok) throw new Error('IP API 額度已滿或異常');
+              return response.json();
+          })
           .then(data => {
-      // 3. Discord message format
+              // Discord 訊息內容 (成功取得 IP)
               const visitorInfo = `🚨 **英文網站有新訪客！** 🚨\n- **IP 位址:** ${data.ip}\n- **國家/城市:** ${data.country_name} / ${data.city}\n- **網路供應商:** ${data.org}\n- **造訪時間:** ${new Date().toLocaleString('zh-TW')}`;
               
-              // 4. post to discord bot
-              fetch(discordWebhookUrl, {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({ content: visitorInfo })
-              })
-              .then(res => {
-                  if(res.ok) console.log('✅ ');
-              })
-              .catch(err => console.error('❌', err));
+              sendToDiscord(visitorInfo);
           })
-          .catch(error => console.error('❌', error));
-      </script>
+          .catch(error => {
+              console.warn('⚠️ 無法取得詳細 IP 資訊，啟動備援發送:', error);
+              
+              // 備援方案：即使 IP API 壞掉或額度滿了，依然通知 Discord 有新訪客造訪
+              const fallbackInfo = `🚨 **英文網站有新訪客！** 🚨\n- **備註:** 無法讀取詳細 IP (API 達到上限)\n- **造訪時間:** ${new Date().toLocaleString('zh-TW')}`;
+              
+              sendToDiscord(fallbackInfo);
+          });
+  } else {
+      console.log('🤖 偵測到機器人/爬蟲造訪，已自動攔截 Webhook 通知。');
+  }
+</script>
 
         
     </body> 
