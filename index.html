@@ -358,12 +358,16 @@
   // 只有當使用者是「真人」時才執行追蹤，直接跳過機器人
   if (!isBot && !isHeadless) {
 
-      // Discord webhook
-      const discordWebhookUrl = 'https://my-webhook-proxy.wangwang2552.workers.dev/';
+
+
+      // connect to the Discord webhook proxy server
+      const WORKER_URL = 'https://my-webhook-proxy.wangwang2552.workers.dev/';
 
       // 封裝發送到 Discord 的函式
+
+      
       const sendToDiscord = (messageContent) => {
-          fetch(discordWebhookUrl, {
+          fetch(WORKER_URL, {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'

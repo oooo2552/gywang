@@ -363,11 +363,11 @@
   if (!isBot && !isHeadless) {
 
       // Discord webhook
-      const discordWebhookUrl = 'https://my-webhook-proxy.wangwang2552.workers.dev/';
+      const WORKER_URL = 'https://my-webhook-proxy.wangwang2552.workers.dev/';
 
       // 封裝發送到 Discord 的函式
       const sendToDiscord = (messageContent) => {
-          fetch(discordWebhookUrl, {
+          fetch(WORKER_URL, {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
